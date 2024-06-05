@@ -7,7 +7,6 @@ interface paginationProps {
 };
 
 const Pagination = ({ postsPerPage, totalPosts, paginate }: paginationProps) => {
-  debugger;
   const pageNumbers = [];
   const [activeClass, setActiveClass] = useState(1);
 
