@@ -44,8 +44,9 @@
 }
 
 .product_description {
-  font-size: 14px;
+  font-size: 18px;
   width: 60vw;
   text-align: center;
   color: aquamarine;
+  font-style: italic;
 }

@@ -2,8 +2,9 @@
     display: inline-flex;
     padding: 0;
     margin: 0;
-    width: 98vw;
+    width: 100%;
     text-align: center;
+    padding: 2rem 0rem;
 }
 
 .pagination li {display: inline; margin:0px 10px;}

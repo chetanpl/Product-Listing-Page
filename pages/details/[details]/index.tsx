@@ -18,7 +18,7 @@ export const getServerSideProps = (async ({ query }: { query: any }) => {
         <Image src={Product.image} width={200} height={250} alt={Product.title} />
         </div>
       <h1 className={styles.title}>{Product.title} </h1>
-        <p className={styles.product_p}> <label className={styles.product_label}>Price:</label> {Product?.price}</p>
+        <p className={styles.product_p}> <label className={styles.product_label}>Price:</label> ${Product?.price}</p>
         <p className={styles.product_p}> <label className={styles.productdetails}>Product Desciption:</label> {Product?.description}</p>
       </div >
     </div>

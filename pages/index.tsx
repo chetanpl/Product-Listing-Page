@@ -46,7 +46,7 @@ const Home = () => {
       <h1 className={styles.title}>Product List</h1>
       <div className={styles.container}>
         <div className={styles.inputContainer}>
-          <input type='text' placeholder='Search product name here and it is case sensitive :-' className={styles.input} onChange={filter} id='filter' />
+          <input type='text' placeholder='Please search product name and it should be case sensitive :-' className={styles.input} onChange={filter} id='filter' />
         </div>
         <ul className={styles.product_list}>
           {currentPosts.filter((line: Product) => line.title.includes(searchVal)).map((product: Product) => (
