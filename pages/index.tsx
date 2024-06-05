@@ -43,7 +43,7 @@ const Home = () => {
   }
   return (
     <>
-      <h1 className={styles.title}>Product List</h1>
+      <h1 className={styles.title}>Choose Your Life Style</h1>
       <div className={styles.container}>
         <div className={styles.inputContainer}>
           <input type='text' placeholder='Please search product name and it should be case sensitive :-' className={styles.input} onChange={filter} id='filter' />
