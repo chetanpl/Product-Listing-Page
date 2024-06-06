@@ -19,6 +19,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 This app is for search Products and have navigation feature to look more products. Every product has specific details page where user could get more desire information. 
 
 Technically: This app is developed in module based css and html, SSR feature makes it more faster as the details page is being render on server side. 
+The api returns 20 records and It has been set to show 4 records on each page. Global product of search box has feature to search products by their name or title and filter only current page products tiles only. 
 
 Product Page: 
 
