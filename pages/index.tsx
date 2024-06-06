@@ -1,52 +1,35 @@
-'use client'
-import { useEffect, useState } from 'react';
-import { getProducts } from '../service/api-service';
+import { useState } from 'react';
 import { Product } from '../types/product-type'
 import Link from 'next/link';
 import styles from '../styles/product.module.css'
 import Image from 'next/image';
 import pagestyles from '../styles/pagination.module.css'
 import Pagination from '../pages/component/pagination'
+import { GetServerSideProps } from 'next';
 
-const Home = () => {
-  const [Products, setUsers] = useState<Product[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
+type Props = {
+  initialProducts: Product[];
+};
+
+const Home:React.FC<Props> = ({ initialProducts }) => {
+  const [Products] = useState<Product[]>(initialProducts);
   const [searchVal, setSearchVal] = useState<string>('');
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(4);
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = Products.slice(indexOfFirstPost, indexOfLastPost);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const usersData = await getProducts('https://fakestoreapi.com/products');
-        setUsers(usersData);
-      } catch (error) {
-        console.error('something went wrong', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-  const filter = (e: React.FormEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    const { value } = { ...e.target };
-    setSearchVal(value);
-  }
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    event.preventDefault();
+    const searchQuery = event.target.value.toString();
+    setSearchVal(searchQuery);
+  };
   return (
     <>
       <h1 className={styles.title}>Choose Your Life Style</h1>
       <div className={styles.container}>
         <div className={styles.inputContainer}>
-          <input type='text' placeholder='Please search product name and it should be case sensitive :-' className={styles.input} onChange={filter} id='filter' />
+          <input type='text' placeholder='Please search product name and it should be case sensitive :-' className={styles.input} onChange={handleSearch} id='filter' />
         </div>
         <ul className={styles.product_list}>
           {currentPosts.filter((line: Product) => line.title.includes(searchVal)).map((product: Product) => (
@@ -71,5 +54,9 @@ const Home = () => {
     </>
   );
 };
-
+export const getServerSideProps: GetServerSideProps = async () => {
+  const res = await fetch('https://fakestoreapi.com/products');
+  const initialProducts: Product[] = await res.json();
+  return { props: { initialProducts } };;  
+};
 export default Home;
