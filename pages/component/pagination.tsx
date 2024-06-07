@@ -1,27 +1,36 @@
 import React, { useState } from 'react';
-import Pagstyle from '../../styles/pagination.module.css'
+import pageStyle from '../../styles/pagination.module.css'
 interface paginationProps {
   postsPerPage: number;
   totalPosts: number;
-  paginate: (value: number) => void
+  pageNumber: (value: number) => void
 };
-
-const Pagination = ({ postsPerPage, totalPosts, paginate }: paginationProps) => {
-  const pageNumbers = [];
+const Pagination = ({ postsPerPage, totalPosts, pageNumber }: paginationProps):JSX.Element => {
+  const pageNumbers:number[] = [];
   const [activeClass, setActiveClass] = useState(1);
 
-  for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
-    pageNumbers.push(i);
+  //It helps to highlight the selected page button. 
+  const selectedPagenumber = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    const currentNumber = parseInt((event.target as HTMLInputElement).value);
+    pageNumber(currentNumber);
+    setActiveClass(currentNumber);
   }
+// It arranges pagination according to total products, and per page  visible items
+  const arrangePagination = (): void => {
+    for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
+      pageNumbers.push(i);
+    }
+  }
+  arrangePagination();
   return (
     <nav>
-      <ul className={Pagstyle.pagination}>
+      <ul className={pageStyle.pagination}>
         {pageNumbers.map((number: number) => (
-          <li key={number} className={Pagstyle.page_item}>
-            <button
-              key={number}
-              className={`${number === activeClass ? Pagstyle.active : Pagstyle.normal}`}
-              onClick={() => { paginate(number); setActiveClass(number) }}
+          <li key={number} className={pageStyle.page_item}>
+            <button aria-label={`Page number is ${number}`}
+              key={number} value={number}
+              className={`${number === activeClass ? pageStyle.active : pageStyle.normal}`}
+              onClick={selectedPagenumber}
             >
               {number}
             </button>

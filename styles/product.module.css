@@ -1,4 +1,18 @@
-.title{
+.container {
+  --color: #666;;
+   --border:1px solid #ccc;
+  --font-size: 1.5rem;
+}
+
+.button {
+  background-color: var(--secondary-color);
+  color: white;
+  font-size: var(--font-size);
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+.title, .noRecordsFound{
   text-align: center;
   width: 100%;
 }
@@ -9,7 +23,6 @@
 
 .inputContainer {
   display: flex;
-  /* flex-direction: column; */
   margin-bottom: 20px;
   justify-content: center;
   text-align: center;
@@ -18,12 +31,12 @@
 
 .input {
   padding: 10px;
-  font-size: 1rem;
-  border: 1px solid #ccc;
+  font-size: var(--font-size);
+  border: var(--border);
   border-radius: 4px;
   transition: border-color 0.3s;
   width: 100%;
-  font-size: 20px;
+  font-size: var(--font-size);
   font-family: none;
   color: rgb(35, 67, 67);
   font-style: italic;
@@ -44,7 +57,7 @@ justify-content: center;
 
 .product_item {
 background-color: #fff;
-border: 1px solid #ddd;
+border: var(--border);
 border-radius: 5px;
 width: 200px;
 padding: 10px;
@@ -66,7 +79,7 @@ border-radius: 5px;
 .product_name {
 font-size: 1.2em;
 margin: 10px 0;
-color: #333;
+color: var(--color);
 }
 
 .product_price {
@@ -77,5 +90,5 @@ margin: 5px 0;
 
 .product_description {
 font-size: 0.6em;
-color: #666;
+color:var(--color);
 }

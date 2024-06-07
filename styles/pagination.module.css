@@ -1,5 +1,12 @@
+.container {
+  --color: #666;;
+  --border:1px solid #666;
+  --font-style: italic;;
+  --primary-padding:0.3rem 0.5rem;;
+  --seconday-padding:0.3rem 0.5rem;;
+}
 .pagination {
-    display: inline-flex;
+    display: flex;
     padding: 0;
     margin: 0;
     width: 100%;
@@ -9,11 +16,9 @@
 
 .pagination li {display: inline; margin:0px 10px;}
 
-.pagination li a {
+.pagination li button{
     color: black;
-    float: left;
-    padding: 8px 16px;
-    padding: 0.1rem 0.5rem;
+    padding: 0.3rem 0.5rem;
     text-decoration: none;
    
 }
@@ -21,31 +26,29 @@
 .active{
     background-color: rgb(210, 214, 217);
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 2px 3px 0 rgba(0, 0, 0, 0.19);
-    padding: 10px;
+    padding: var(--primary-padding);
     font-size: 1.2rem;
     color: black;
 } 
 .normal{
-    padding: 10px;
+    padding: var(--primary-padding);
     font-size: 1.2rem;
     color: black;
 }
 
 @media (max-width: 480px) {
-    .pagination li a {
+    .pagination li button {
         color: black;
         float: left;
-        /* padding: 8px 16px; */
-        padding: 0.01rem 0.02rem;
+        padding: var(--seconday-padding);
         text-decoration: none;
         font-size: 0.2rem;
     }
 }
 @media (max-width: 768px) {
-    .pagination li a {
+    .pagination li button {
         color: black;
-        float: left;
-        padding: 0.1rem 0.2rem;
+        padding: var(--seconday-padding);
         text-decoration: none;
         font-size: 0.8rem;
 
@@ -56,20 +59,19 @@
   display: inline-block;
 }
 
-.pagination a {
+.pagination button {
   color: black;
-  float: left;
   padding: 8px 16px;
   text-decoration: none;
 }
 
-.pagination a.active {
+.pagination button.active {
   background-color: #4CAF50;
   color: white;
   border-radius: 5px;
 }
 
-.pagination a:hover:not(.active) {
+.pagination button:hover:not(.active) {
   background-color: #ddd;
   border-radius: 5px;
 }

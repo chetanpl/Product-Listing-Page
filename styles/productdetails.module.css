@@ -1,30 +1,25 @@
 .title {
   text-align: center;
-  width: 100vw;
+  width: 100%;
   font-size: medium;
 }
 
 .product_container {
-  width: 98vw;
-  margin: auto;
+  width: 100%;
   position: relative;
   top: 3rem;
-  flex-direction: column;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   font-family: 'Courier New', Courier, monospace;
 }
 
 .product_imgbox {
-  display: flex;
-  /* flex-direction: column; */
   margin-bottom: 20px;
-  justify-content: center;
-  text-align: center;
   padding: 1rem;
   border-radius: 40px;
-  border: 1px solid gray;
+  border:1px solid #666;;
   text-align: center;
   cursor:zoom-in;
 }
@@ -34,19 +29,31 @@
 .product_imgbox img:hover {
   transform: scale(1.2);
 }
-.product_p{text-align: center;
-  text-align: center;
-  font-style: italic;
-  color: #1e1e21;}
 
 .product_label {
   font-size: 30px;
+  font-weight: bold;
 }
 
 .product_description {
+  font-style: italic;
+  color: #1e1e21;
   font-size: 18px;
   width: 60vw;
   text-align: center;
   color: aquamarine;
   font-style: italic;
+  padding-bottom: 10rem;
+  font-weight: bold;
+}
+.backBtn{
+  background-color: #4CAF50;
+  color:hsl(0, 0%, 100%);
+}
+.box{
+  padding-bottom: 4rem;
+}
+.fontStyle{
+  font-style: italic;
+  font-size: 18px;
 }
