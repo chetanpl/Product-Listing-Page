@@ -2,13 +2,13 @@ import Image from 'next/image';
 import type { InferGetServerSidePropsType, GetServerSideProps } from 'next'
 import { useRouter } from 'next/navigation'
 import  Product  from '../../../types/product-type'
+import apiurl from '../../../libs/api'
 import styles from '../../../styles/productdetails.module.css'
-import { getProduct } from '@/service/api-service';
-import React from 'react';
+import getProductList from '@/service/api-service';
 
 // help to produce products data at server side of memeory
 export const getServerSideProps = (async ({ query }: { query: any }) => {
-  const Product: Product = await getProduct(`https://fakestoreapi.com/products/${query.details}`)
+  const Product: Product = await getProductList<Promise<Product>>(`${apiurl.BASE_URL}/products/${query.details}`)
   return { props: { Product } }
 })
 

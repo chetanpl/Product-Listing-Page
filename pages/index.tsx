@@ -2,9 +2,10 @@ import React, { ReactNode, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { GetServerSideProps } from 'next';
-import Product  from '../types/product-type'
+import Product from '../types/product-type'
 import Pagination from '../pages/component/pagination'
-import { getProducts } from '../service/api-service'
+import getProductList from '../service/api-service'
+import apiurl from '../libs/api'
 import styles from '../styles/product.module.css'
 import pagestyles from '../styles/pagination.module.css'
 
@@ -29,7 +30,7 @@ const Home: React.FC<Props> = ({ initialProducts }): JSX.Element => {
     setSearchVal(searchQuery);
   };
   // render one card of the product
-  const ProductCards = ({ product }: { product: Product }): ReactNode => {
+  const ProductCards = ({ product }: { product: Product }): JSX.Element => {
     return (<li className={styles.product_item} key={product.id}>
       <>
         <Link className={styles.product_image} href={`/details/${product.id}`}> <Image src={product.image} width={500} height={250} alt={product.title} style={{ width: '100%' }} /></Link>
@@ -43,16 +44,18 @@ const Home: React.FC<Props> = ({ initialProducts }): JSX.Element => {
     <>
       <header>
         <title>Product Page</title>
-        <h1 className={styles.title}>Choose Your Life Style</h1></header>
+        <h1 className={styles.title}>Choose Your Life Style</h1>
+      </header>
       <div className={styles.container}>
         <div className={styles.inputContainer}>
           <input type='text' aria-label="Please search product name and it should be case sensitive" placeholder='Please search product name and it should be case sensitive :-' className={styles.input} onChange={handleSearch} id='filter' />
         </div>
-        <section><ul className={styles.product_list}>
+        <section>
+          <ul className={styles.product_list}>
           {isFilterHasRecord.map((product: Product) => (
             <ProductCards product={product} />
           ))}
-          {isFilterHasRecord.length <= 0 && <h2 className={styles.noRecordsFound}>The searched record is not available in stock.</h2>}
+          {isFilterHasRecord.length <= 0 && <h2 className={styles.noRecordsFound}>&#128542;Out of Stock.</h2>}
         </ul>
         </section>
         {isFilterHasRecord.length > 0 && <footer className={pagestyles.pagination} id='Pagination'>
@@ -69,7 +72,7 @@ const Home: React.FC<Props> = ({ initialProducts }): JSX.Element => {
 };
 // help to produce products data at server side of memeory
 export const getServerSideProps: GetServerSideProps = async () => {
-  const initialProducts = await getProducts('https://fakestoreapi.com/products');
+  const initialProducts = await getProductList<Promise<Product[]>>(`${apiurl.BASE_URL}/products`);
   return { props: { initialProducts } };
 };
 export default Home;

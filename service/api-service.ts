@@ -1,15 +1,7 @@
-import { Product } from '../types/product-type';
-
-// Manage to return all products records
-const getProducts = async (API_URL:string): Promise<Product[]> => {
+// The Genric function returns product list and product details list
+export async function getProductList<T>(API_URL: string): Promise<T> {
   const res = await fetch(`${API_URL}`);
-  const response: Product[] = await res.json();
- return response;
-};
-// API return each product records
-const getProduct = async (API_URL:string): Promise<Product> => {
-  const res = await fetch(`${API_URL}`);
-  const response: Product = await res.json();
+  const response: T = await res.json();
   return response;
 };
-export {getProducts, getProduct}
+export default getProductList;
