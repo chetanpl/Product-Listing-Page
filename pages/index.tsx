@@ -47,24 +47,26 @@ const Home: React.FC<Props> = ({ initialProducts }): JSX.Element => {
         <h1 className={styles.title}>Choose Your Life Style</h1>
       </header>
       <div className={styles.container}>
-        <div className={styles.inputContainer}>
+        {Products[0].isError && <h3 className={styles.inputContainer}>{Products[0].isError}</h3> || <><div className={styles.inputContainer}>
           <input type='text' aria-label="Please search product name and it should be case sensitive" placeholder='Please search product name and it should be case sensitive :-' className={styles.input} onChange={handleSearch} id='filter' />
         </div>
-        <section>
-          <ul className={styles.product_list}>
-          {isFilterHasRecord.map((product: Product) => (
-            <ProductCards product={product} />
-          ))}
-          {isFilterHasRecord.length <= 0 && <h2 className={styles.noRecordsFound}>&#128542;Out of Stock.</h2>}
-        </ul>
-        </section>
-        {isFilterHasRecord.length > 0 && <footer className={pagestyles.pagination} id='Pagination'>
-          <Pagination
-            postsPerPage={postsPerPage}
-            totalPosts={Products.length - 1}
-            pageNumber={setCurrentPage}
-          />
-        </footer>
+          <section>
+            <ul className={styles.product_list}>
+              {isFilterHasRecord.map((product: Product) => (
+                <ProductCards product={product} />
+              ))}
+              {isFilterHasRecord.length <= 0 && <h2 className={styles.noRecordsFound}>&#128542;Out of Stock.</h2>}
+            </ul>
+          </section>
+          {isFilterHasRecord.length > 0 && <footer id='Pagination'>
+            <Pagination
+              postsPerPage={postsPerPage}
+              totalPosts={Products.length - 1}
+              pageNumber={setCurrentPage}
+            />
+          </footer>
+          }
+        </>
         }
       </div >
     </>
@@ -72,7 +74,23 @@ const Home: React.FC<Props> = ({ initialProducts }): JSX.Element => {
 };
 // help to produce products data at server side of memeory
 export const getServerSideProps: GetServerSideProps = async () => {
-  const initialProducts = await getProductList<Promise<Product[]>>(`${apiurl.BASE_URL}/products`);
-  return { props: { initialProducts } };
+  try {
+    const initialProducts = await getProductList<Promise<Product[]>>(`${apiurl.BASE_URL}/products`);
+    return { props: { initialProducts } };
+  }
+  catch (error) {
+    const initialProducts: Product[] = [
+      {
+        isError: 'Sorry! Something Went Wrong try after sometime!',
+        id: 0,
+        title: '',
+        price: 0,
+        description: '',
+        image: ''
+      }
+    ]
+
+    return { props: { initialProducts } };
+  }
 };
 export default Home;

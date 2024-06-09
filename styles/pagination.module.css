@@ -1,66 +1,73 @@
 .container {
-  --color: #666;;
-  --border:1px solid #666;
-  --font-style: italic;;
-  --primary-padding:0.3rem 0.5rem;;
-  --seconday-padding:0.3rem 0.5rem;;
+  --primary-padding: 0.3rem 0.5rem;
+  --seconday-padding: 0.3rem 0.5rem;
+  --primary-font-size:1.2rem;
+  --primary-color:var(--primary-color);
+  ;
 }
+
 .pagination {
-    display: flex;
-    padding: 0;
-    margin: 0;
-    width: 100%;
-    text-align: center;
-    padding: 2rem 0rem;
+  display: flex;
+  margin: 0;
+  width: 100%;
+  justify-content: center;
+  padding: 2rem 0rem;
 }
 
-.pagination li {display: inline; margin:0px 10px;}
-
-.pagination li button{
-    color: black;
-    padding: 0.3rem 0.5rem;
-    text-decoration: none;
-   
+.pagination li {
+  display: inline;
+  margin: 0px 10px;
 }
 
-.active{
-    background-color: rgb(210, 214, 217);
-    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 2px 3px 0 rgba(0, 0, 0, 0.19);
-    padding: var(--primary-padding);
-    font-size: 1.2rem;
-    color: black;
-} 
-.normal{
-    padding: var(--primary-padding);
-    font-size: 1.2rem;
-    color: black;
+.pagination li button {
+  color: var(--primary-color);
+  padding: 0.3rem 0.5rem;
+  text-decoration: none;
+
+}
+
+.active {
+  background-color: rgb(210, 214, 217);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 2px 3px 0 rgba(0, 0, 0, 0.19);
+  padding: var(--primary-padding);
+  font-size: var(--primary-font-size);
+  color: var(--primary-color);
+}
+
+.normal {
+  padding: var(--primary-padding);
+  font-size: var(--primary-font-size);
+  color: var(--primary-color);
 }
 
 @media (max-width: 480px) {
-    .pagination li button {
-        color: black;
-        float: left;
-        padding: var(--seconday-padding);
-        text-decoration: none;
-        font-size: 0.2rem;
-    }
+  .pagination li button {
+    color: var(--primary-color);
+    float: left;
+    padding: var(--seconday-padding);
+    text-decoration: none;
+    font-size: 0.2rem;
+  }
 }
-@media (max-width: 768px) {
-    .pagination li button {
-        color: black;
-        padding: var(--seconday-padding);
-        text-decoration: none;
-        font-size: 0.8rem;
 
-    }
+@media (max-width: 768px) {
+  .pagination li button {
+    color: var(--primary-color);
+    padding: var(--seconday-padding);
+    text-decoration: none;
+    font-size: 0.8rem;
+
+  }
 }
 
 .pagination {
-  display: inline-block;
+  display: flex;
+  justify-content: center;
+  text-align: center;
 }
 
 .pagination button {
-  color: black;
+  color: var(--primary-color);
   padding: 8px 16px;
   text-decoration: none;
 }

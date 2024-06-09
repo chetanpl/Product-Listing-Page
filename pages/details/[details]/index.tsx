@@ -8,8 +8,22 @@ import getProductList from '@/service/api-service';
 
 // help to produce products data at server side of memeory
 export const getServerSideProps = (async ({ query }: { query: any }) => {
+try{
   const Product: Product = await getProductList<Promise<Product>>(`${apiurl.BASE_URL}/products/${query.details}`)
   return { props: { Product } }
+}
+catch(error){
+    const Product: Product = 
+      {
+        isError: 'Sorry! Something Went Wrong try after sometime!',
+        id: 0,
+        title: '',
+        price: 0,
+        description: '',
+        image: ''
+      }
+    return { props: { Product } };
+}
 })
 
 export default function Details({
@@ -21,8 +35,9 @@ export default function Details({
     router.back();
   }
   return (<>
-    <title>Product Details</title>
+      <><title>Product Details</title>
     <section className={styles.box}>
+    {Product.isError && <h3 className={styles.product_container}>{Product.isError}</h3> ||
       <div className={styles.product_container}>
         <div className={styles.product_imgbox}>
           <Image src={Product.image} width={200} height={250} alt={Product.title} />
@@ -33,7 +48,9 @@ export default function Details({
         <p> <label className={styles.product_label}>Price:</label> <label>${Product?.price}</label></p>
         <p> <label className={styles.productdetails}>Product Desciption:</label> <label className={styles.fontStyle}>{Product?.description}</label></p>
       </div>
+}
     </section>
+    </>
   </>
   );
-};
+}
