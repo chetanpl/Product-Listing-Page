@@ -11,9 +11,11 @@ import pagestyles from '../styles/pagination.module.css'
 
 type Props = {
   initialProducts: Product[];
+  errorStatusCode: string;
+  errorMessage: string;
 };
 
-const Home: React.FC<Props> = ({ initialProducts }): JSX.Element => {
+const Home: React.FC<Props> = ({ initialProducts, errorStatusCode, errorMessage }): JSX.Element => {
   const [Products] = useState<Product[]>(initialProducts);
   const [searchVal, setSearchVal] = useState<string>('');
   //handling pagination states and veribles start
@@ -47,7 +49,7 @@ const Home: React.FC<Props> = ({ initialProducts }): JSX.Element => {
         <h1 className={styles.title}>Choose Your Life Style</h1>
       </header>
       <div className={styles.container}>
-        {Products[0].isError && <h3 className={styles.inputContainer}>{Products[0].isError}</h3> || <><div className={styles.inputContainer}>
+        {errorStatusCode && <h3 className={styles.inputContainer}>{errorMessage}</h3> || <><div className={styles.inputContainer}>
           <input type='text' aria-label="Please search product name and it should be case sensitive" placeholder='Please search product name and it should be case sensitive :-' className={styles.input} onChange={handleSearch} id='filter' />
         </div>
           <section>
@@ -79,18 +81,8 @@ export const getServerSideProps: GetServerSideProps = async () => {
     return { props: { initialProducts } };
   }
   catch (error) {
-    const initialProducts: Product[] = [
-      {
-        isError: 'Sorry! Something Went Wrong try after sometime!',
-        id: 0,
-        title: '',
-        price: 0,
-        description: '',
-        image: ''
-      }
-    ]
-
-    return { props: { initialProducts } };
+    const initialProducts: Product[] = [];
+    return { props: { initialProducts, errorStatusCode: 404, errorMessage: 'Sorry! Something Went Wrong try after sometime!' } };
   }
 };
 export default Home;

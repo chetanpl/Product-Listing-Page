@@ -13,22 +13,22 @@ try{
   return { props: { Product } }
 }
 catch(error){
-    const Product: Product = 
+    const Product: Product =
       {
-        isError: 'Sorry! Something Went Wrong try after sometime!',
         id: 0,
         title: '',
         price: 0,
         description: '',
         image: ''
       }
-    return { props: { Product } };
+    return { props: { Product ,errorStatusCode: 404, errorMessage: 'Sorry! Something Went Wrong try after sometime!' } };
 }
 })
 
 export default function Details({
-  Product
+  Product,errorStatusCode,errorMessage
 }: InferGetServerSidePropsType<typeof getServerSideProps>): JSX.Element {
+  debugger;
   const router = useRouter();
 
   const goBack = (): void => {
@@ -37,7 +37,7 @@ export default function Details({
   return (<>
       <><title>Product Details</title>
     <section className={styles.box}>
-    {Product.isError && <h3 className={styles.product_container}>{Product.isError}</h3> ||
+    {errorStatusCode && <h3 className={styles.product_container}>{errorMessage}</h3> ||
       <div className={styles.product_container}>
         <div className={styles.product_imgbox}>
           <Image src={Product.image} width={200} height={250} alt={Product.title} />
