@@ -30,3 +30,10 @@ Product Details Page
 
 <img width="928" alt="image" src="https://github.com/chetanpl/Product-Listing-Page/assets/16497813/0df73d4f-d982-46ea-a66f-00273a50797f">
 
+Cypress Automation feature added. 
+Run : npx cypress open
+It runs all automation test cases
+
+<img width="947" alt="image" src="https://github.com/chetanpl/Product-Listing-Page/assets/16497813/5652bda3-72cb-4d03-9a7e-0e69c58c8667">
+
+
