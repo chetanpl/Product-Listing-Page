@@ -27,7 +27,7 @@ const Pagination = ({ postsPerPage, totalPosts, pageNumber }: paginationProps):J
       <ul className={pageStyle.pagination}>
         {pageNumbers.map((number: number) => (
           <li key={number} className={pageStyle.page_item}>
-            <button aria-label={`Page number is ${number}`}
+            <button data-testid={`pageNumber${number}`} aria-label={`Page number is ${number}`}
               key={number} value={number}
               className={`${number === activeClass ? pageStyle.active : pageStyle.normal}`}
               onClick={selectedPagenumber}

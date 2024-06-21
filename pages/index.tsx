@@ -7,7 +7,6 @@ import Pagination from '../pages/component/pagination'
 import getProductList from '../service/api-service'
 import apiurl from '../libs/api'
 import styles from '../styles/product.module.css'
-import pagestyles from '../styles/pagination.module.css'
 
 type Props = {
   initialProducts: Product[];
@@ -33,10 +32,10 @@ const Home: React.FC<Props> = ({ initialProducts, errorStatusCode, errorMessage 
   };
   // render one card of the product
   const ProductCards = ({ product }: { product: Product }): JSX.Element => {
-    return (<li className={styles.product_item} key={product.id}>
+    return (<li data-testid="productid" className={styles.product_item} key={product.id}>
       <>
         <Link className={styles.product_image} href={`/details/${product.id}`}> <Image src={product.image} width={500} height={250} alt={product.title} style={{ width: '100%' }} /></Link>
-        <h2 className={styles.product_name}>{product.title}</h2>
+        <h2 data-testid="productName" className={styles.product_name}>{product.title}</h2>
         <p className={styles.product_price}><Link href={`/details/${product.id}`}> ${product.price}</Link></p>
         <p className={styles.product_description}>{product.description}</p>
       </>
@@ -46,11 +45,11 @@ const Home: React.FC<Props> = ({ initialProducts, errorStatusCode, errorMessage 
     <>
       <header>
         <title>Product Page</title>
-        <h1 className={styles.title}>Choose Your Life Style</h1>
+        <h1 className={styles.title} data-testid="title">Choose Your Life Style</h1>
       </header>
       <div className={styles.container}>
         {errorStatusCode && <h3 className={styles.inputContainer}>{errorMessage}</h3> || <><div className={styles.inputContainer}>
-          <input type='text' aria-label="Please search product name and it should be case sensitive" placeholder='Please search product name and it should be case sensitive :-' className={styles.input} onChange={handleSearch} id='filter' />
+          <input data-testid="seachInputCtrl" type='text' aria-label="Please search product name and it should be case sensitive" placeholder='Please search product name and it should be case sensitive :-' className={styles.input} onChange={handleSearch} id='filter' />
         </div>
           <section>
             <ul className={styles.product_list}>
