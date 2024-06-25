@@ -32,9 +32,12 @@ const Home: React.FC<Props> = ({ initialProducts, errorStatusCode, errorMessage 
   };
   // render one card of the product
   const ProductCards = ({ product }: { product: Product }): JSX.Element => {
-    return (<li data-testid="productid" className={styles.product_item} key={product.id}>
+    return (<li key={product.id} data-testid="productid" className={styles.product_item}>
       <>
-        <Link className={styles.product_image} href={`/details/${product.id}`}> <Image src={product.image} width={500} height={250} alt={product.title} style={{ width: '100%' }} /></Link>
+        <Link  className={styles.product_image} href={`/details/${product.id}`}> <Image key={product.id+'image'}  priority src={product.image} width="0"
+          height="0"
+          sizes="100vw"
+          style={{ width: '100%', height: 'auto' }} alt={product.title} /></Link>
         <h2 data-testid="productName" className={styles.product_name}>{product.title}</h2>
         <p className={styles.product_price}><Link href={`/details/${product.id}`}> ${product.price}</Link></p>
         <p className={styles.product_description}>{product.description}</p>
@@ -52,7 +55,7 @@ const Home: React.FC<Props> = ({ initialProducts, errorStatusCode, errorMessage 
           <input data-testid="seachInputCtrl" type='text' aria-label="Please search product name and it should be case sensitive" placeholder='Please search product name and it should be case sensitive :-' className={styles.input} onChange={handleSearch} id='filter' />
         </div>
           <section>
-            <ul className={styles.product_list}>
+            <ul key="productList" className={styles.product_list}>
               {isFilterHasRecord.map((product: Product) => (
                 <ProductCards product={product} />
               ))}

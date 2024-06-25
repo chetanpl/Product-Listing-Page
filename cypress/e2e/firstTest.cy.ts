@@ -1,17 +1,17 @@
 describe('template spec', () => {
-  it('Does Page title is and first product id available', () => {
+  it('Is Page title and first product available', () => {
     cy.visit('http://localhost:3000');
     cy.get('[data-testid="title"]').should("have.text","Choose Your Life Style");
     cy.get('[data-testid="productid"]').should('have.css','background-color').and('match',/255, 255, 255/);
     cy.get('[data-testid="productid"]').first('1');
   })
-  it('Is input product match with search resuls',()=>{
+  it('Search product name and match with reasult',()=>{
     cy.visit('http://localhost:3000')
     const productName = 'Foldsack';
     cy.typeWithDelay('[data-testid="seachInputCtrl"]', productName, 2);
     cy.get('[data-testid="productName"]').contains(productName);
   })
-  it('Is pagintation working as per click page',()=>{
+  it('A Confirmation, Does pagination work',()=>{
     cy.visit('http://localhost:3000')
     const testid="pageNumber2";
     cy.get(`[data-testid=${testid}]`).click();
