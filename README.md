@@ -37,6 +37,7 @@ Automation passed with following paramters.
 1. Match the page title and color.
 2. Automation auto enter product name and match with search result.
 3. Automation auto click page number and match it with active page. 
-![alt text](image.png)
+![Uploading image.png…]()
+
 
 
