@@ -37,6 +37,6 @@ Automation passed with following paramters.
 1. Match the page title and color.
 2. Automation auto enter product name and match with search result.
 3. Automation auto click page number and match it with active page. 
-<img width="947" alt="image" src="https://github.com/chetanpl/Product-Listing-Page/assets/16497813/5652bda3-72cb-4d03-9a7e-0e69c58c8667">
+![alt text](image.png)
 
 
