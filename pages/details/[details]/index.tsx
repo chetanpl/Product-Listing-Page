@@ -28,7 +28,6 @@ catch(error){
 export default function Details({
   Product,errorStatusCode,errorMessage
 }: InferGetServerSidePropsType<typeof getServerSideProps>): JSX.Element {
-  debugger;
   const router = useRouter();
 
   const goBack = (): void => {
